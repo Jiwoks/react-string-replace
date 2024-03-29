@@ -1,3 +1,5 @@
+import React from 'react';
+
 /* eslint-disable vars-on-top, no-var, prefer-template */
 var isRegExp = function (re) { 
   return re instanceof RegExp;
@@ -88,7 +90,17 @@ function replaceString(str, match, fn) {
 module.exports = function reactStringReplace(source, match, fn) {
   if (!Array.isArray(source)) source = [source];
 
+  // handle nested elements
   return flatten(source.map(function(x) {
+    if (React.isValidElement(x)) {
+      let { props } = x;
+      const {children, ...rest} = props;
+
+      const replacedChildren = reactStringReplace(children, match, fn);
+
+      return React.createElement(x.type, rest, replacedChildren);
+    }
+
     return isString(x) ? replaceString(x, match, fn) : x;
   }));
 };
