@@ -87,7 +87,7 @@ function replaceString(str, match, fn) {
   return result;
 }
 
-module.exports = function reactStringReplace(source, match, fn) {
+export default function reactStringReplace(source, match, fn) {
   if (!Array.isArray(source)) source = [source];
 
   // handle nested elements
@@ -103,4 +103,4 @@ module.exports = function reactStringReplace(source, match, fn) {
 
     return isString(x) ? replaceString(x, match, fn) : x;
   }));
-};
+}
