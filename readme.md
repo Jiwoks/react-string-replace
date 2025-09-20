@@ -15,15 +15,13 @@ yarn add react-string-replace
 
 ## Usage
 
-First, import the lib. Both `require` and `import` are supported.
+Import the module using ES module syntax:
 
 ```js
 import reactStringReplace from 'react-string-replace';
-// OR
-const reactStringReplace = require('react-string-replace')
 ```
 
-Examples will use `import` since it is more common in the React ecosystem.
+**Note:** This package uses ES modules. Use `import` statements instead of `require()`.
 
 ### Simple Example
 
